@@ -50,7 +50,7 @@ public class BillingPanel extends JPanel {
         this.insuranceProviderDAO = new InsuranceProviderDAO();
         BillDAO billDAO = new BillDAO();
         InsuranceClaimDAO claimDAO = new InsuranceClaimDAO();
-        this.billingService = new BillingService(billDAO, claimDAO);
+        this.billingService = new BillingService(billDAO);
 
         setLayout(new BorderLayout(10, 10));
         setBorder(new EmptyBorder(10, 10, 10, 10));

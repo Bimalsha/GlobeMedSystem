@@ -100,6 +100,11 @@ public class ComprehensivePatientReportVisitor implements IReportVisitor {
     }
 
     @Override
+    public void visit(InsuranceClaim claim) {
+
+    }
+
+    @Override
     public String getReport() {
         return report.toString();
     }

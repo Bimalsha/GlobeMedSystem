@@ -11,6 +11,7 @@ public interface IReportVisitor {
     void visit(BloodReport report);
     void visit(UrineReport report);
     void visit(XrayReport report);
+    void visit(InsuranceClaim claim);
 
     String getReport();
 }

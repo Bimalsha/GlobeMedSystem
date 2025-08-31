@@ -26,6 +26,12 @@ public class FinancialSummaryVisitor implements IReportVisitor {
     @Override public void visit(BloodReport report) {}
     @Override public void visit(UrineReport report) {}
     @Override public void visit(XrayReport report) {}
+
+    @Override
+    public void visit(InsuranceClaim claim) {
+
+    }
+
     @Override
     public String getReport() {
         StringBuilder report = new StringBuilder();

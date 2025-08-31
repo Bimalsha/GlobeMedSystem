@@ -34,6 +34,9 @@ public class Bill implements IVisitableElement {
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
+    @OneToOne(mappedBy = "bill", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private InsuranceClaim insuranceClaim;
+
     public Bill() {
         this.billingDate = LocalDateTime.now(); // Default to current time
         this.isPaid = false; // Default to not paid
@@ -56,6 +59,13 @@ public class Bill implements IVisitableElement {
     public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
     public Patient getPatient() { return patient; }
     public void setPatient(Patient patient) { this.patient = patient; }
+    public InsuranceClaim getInsuranceClaim() {
+        return insuranceClaim;
+    }
+
+    public void setInsuranceClaim(InsuranceClaim insuranceClaim) {
+        this.insuranceClaim = insuranceClaim;
+    }
 
     @Override
     public void accept(IReportVisitor visitor) {
