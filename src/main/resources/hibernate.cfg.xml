@@ -1,0 +1,44 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/globemed?createDatabaseIfNotExist=true</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">Bimalsha12#</property> <!-- !! CHANGE THIS !! -->
+
+        <!-- JDBC connection pool -->
+        <property name="connection.pool_size">10</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Use the "update" strategy to modify the schema based on entities -->
+        <property name="hbm2ddl.auto">update</property>
+
+        <!-- Mapping classes required by the new schema -->
+        <mapping class="com.globemed.model.Gender"/>
+        <mapping class="com.globemed.model.Patient"/>
+        <mapping class="com.globemed.model.Role"/>
+        <mapping class="com.globemed.model.Department"/>
+        <mapping class="com.globemed.model.Status"/>
+        <mapping class="com.globemed.model.Staff"/>
+        <mapping class="com.globemed.model.AppointmentStatus"/>
+        <mapping class="com.globemed.model.Appointment"/>
+        <mapping class="com.globemed.model.InsuranceProvider"/>
+        <mapping class="com.globemed.model.Bill"/>
+        <mapping class="com.globemed.model.InsuranceClaim"/>
+
+        <!-- Unused but schema-compliant models -->
+        <mapping class="com.globemed.model.ClaimStatus"/>
+        <mapping class="com.globemed.model.PaymentMethod"/>
+        <mapping class="com.globemed.model.Timetable"/>
+
+    </session-factory>
+</hibernate-configuration>
