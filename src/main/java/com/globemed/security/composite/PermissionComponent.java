@@ -1,10 +1,6 @@
 package com.globemed.security.composite;
 
-/**
- * The Component interface for the Composite pattern.
- * Declares the interface for both simple permissions (Leafs) and
- * groups of permissions (Composites).
- */
+
 public abstract class PermissionComponent {
 
     public void add(PermissionComponent permissionComponent) {

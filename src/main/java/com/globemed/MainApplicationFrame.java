@@ -18,12 +18,15 @@ public class MainApplicationFrame extends JFrame {
         setSize(1280, 800);
         setLocationRelativeTo(null);
 
-        // Set application icon
-        URL iconURL = getClass().getResource("/icons/hospital_icon.png");
+        // Load the icon image from the resources folder.
+        URL iconURL = getClass().getResource("/icons/icon.png");
         if (iconURL != null) {
-            setIconImage(new ImageIcon(iconURL).getImage());
+            ImageIcon appIcon = new ImageIcon(iconURL);
+            setIconImage(appIcon.getImage());
+        } else {
+            System.err.println("Application icon not found: /icons/icon.png");
         }
-
+        // --- END: ADD ICON LOGIC ---
         // Build the main UI with tabs
         JTabbedPane mainTabbedPane = new JTabbedPane();
         mainTabbedPane.setFont(new Font("SansSerif", Font.BOLD, 14));

@@ -26,15 +26,7 @@ public class LoginFrame extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Load the icon image from the resources folder.
-        URL iconURL = getClass().getResource("/icons/icon.png");
-        if (iconURL != null) {
-            ImageIcon appIcon = new ImageIcon(iconURL);
-            setIconImage(appIcon.getImage());
-        } else {
-            System.err.println("Application icon not found: /icons/icon.png");
-        }
-        // --- END: ADD ICON LOGIC ---
+
 
         // The main content pane is a custom JPanel with rounded corners
         JPanel mainPanel = new JPanel(new GridLayout(1, 2)) {
