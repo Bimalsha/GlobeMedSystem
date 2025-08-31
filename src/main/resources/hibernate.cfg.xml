@@ -39,6 +39,9 @@
         <mapping class="com.globemed.model.ClaimStatus"/>
         <mapping class="com.globemed.model.PaymentMethod"/>
         <mapping class="com.globemed.model.Timetable"/>
+        <mapping class="com.globemed.model.BloodReport"/>
+        <mapping class="com.globemed.model.UrineReport"/>
+        <mapping class="com.globemed.model.XrayReport"/>
 
     </session-factory>
 </hibernate-configuration>

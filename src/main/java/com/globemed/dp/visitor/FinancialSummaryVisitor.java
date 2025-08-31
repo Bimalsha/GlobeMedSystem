@@ -1,8 +1,7 @@
 package com.globemed.dp.visitor;
 
-import com.globemed.model.Appointment;
-import com.globemed.model.Bill;
-import com.globemed.model.Patient;
+import com.globemed.model.*;
+
 import java.time.LocalDate;
 
 public class FinancialSummaryVisitor implements IReportVisitor {
@@ -24,6 +23,9 @@ public class FinancialSummaryVisitor implements IReportVisitor {
     @Override public void visit(Patient patient) {}
     @Override public void visit(Appointment appointment) {}
 
+    @Override public void visit(BloodReport report) {}
+    @Override public void visit(UrineReport report) {}
+    @Override public void visit(XrayReport report) {}
     @Override
     public String getReport() {
         StringBuilder report = new StringBuilder();

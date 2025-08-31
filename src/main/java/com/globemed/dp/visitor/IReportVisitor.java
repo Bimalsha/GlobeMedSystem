@@ -1,17 +1,16 @@
 package com.globemed.dp.visitor;
 
-import com.globemed.model.Appointment; // <-- ADD THIS IMPORT
-import com.globemed.model.Bill;
-import com.globemed.model.Patient;
+import com.globemed.model.*;
 
-/**
- * The Visitor interface declares a set of visiting methods that correspond
- * to concrete element classes.
- */
 public interface IReportVisitor {
     void visit(Patient patient);
     void visit(Bill bill);
-    void visit(Appointment appointment); // <-- ADD THIS METHOD
+    void visit(Appointment appointment);
 
-    String getReport(); // A common method to retrieve the final report string
+    // Add visit methods for the new report types
+    void visit(BloodReport report);
+    void visit(UrineReport report);
+    void visit(XrayReport report);
+
+    String getReport();
 }

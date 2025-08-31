@@ -1,8 +1,6 @@
 package com.globemed.view.panels;
 
-import com.globemed.dao.AppointmentDAO;
-import com.globemed.dao.BillDAO;
-import com.globemed.dao.PatientDAO;
+import com.globemed.dao.*;
 import com.globemed.dp.visitor.ComprehensivePatientReportVisitor;
 import com.globemed.dp.visitor.FinancialSummaryVisitor;
 import com.globemed.model.Patient;
@@ -12,6 +10,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.util.Collections;
 
 public class ReportsPanel extends JPanel {
 
@@ -22,13 +21,11 @@ public class ReportsPanel extends JPanel {
 
     // DAOs and Service needed for reporting
     private PatientDAO patientDAO;
-    private AppointmentDAO appointmentDAO;
     private BillDAO billDAO;
     private ReportGeneratorService reportService;
 
     public ReportsPanel() {
         this.patientDAO = new PatientDAO();
-        this.appointmentDAO = new AppointmentDAO();
         this.billDAO = new BillDAO();
         this.reportService = new ReportGeneratorService();
 
@@ -85,11 +82,18 @@ public class ReportsPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Patient with ID " + patientId + " not found.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            // Create the specific visitor for this report
-            ComprehensivePatientReportVisitor visitor = new ComprehensivePatientReportVisitor(appointmentDAO, billDAO);
+            // Create the specific visitor, providing it with all necessary DAOs
+            ComprehensivePatientReportVisitor visitor = new ComprehensivePatientReportVisitor(
+                    new AppointmentDAO(),
+                    new BillDAO(),
+                    new BloodReportDAO(),
+                    new UrineReportDAO(),
+                    new XrayReportDAO()
+            );
             // Use the service to generate the report
             String report = reportService.generateReport(patient, visitor);
             reportArea.setText(report);
+            reportArea.setCaretPosition(0); // Scroll to top
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Please enter a valid numeric Patient ID.", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -100,7 +104,11 @@ public class ReportsPanel extends JPanel {
         // Create the visitor for this report
         FinancialSummaryVisitor visitor = new FinancialSummaryVisitor();
         // Use the service to generate the report on the list of all bills
-        String report = reportService.generateReportForList(billDAO.findAll(), visitor);
+        String report = reportService.generateReportForList(
+                billDAO.findAll() != null ? billDAO.findAll() : Collections.emptyList(),
+                visitor
+        );
         reportArea.setText(report);
+        reportArea.setCaretPosition(0); // Scroll to top
     }
 }
